@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col title">name</div>
+    <div class="col title">stock</div>
+    <div class="col title">prix</div>
+    <div class="col title">Date de création</div>
+    <div class="col title">Actions</div>
+  </div>
+  @for (product of listProduct(); track product.id) {
+  <div class="row">
+    <div class="col">{{ product.name }}</div>
+    <div class="col">{{ product.stock }}</div>
+    <div class="col">{{ product.price }}</div>
+    <div class="col">{{ product.creationDate }}</div>
+    <div class="col">Ajouter</div>
+  </div>
+  }
+</div>
