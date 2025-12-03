@@ -2,15 +2,14 @@
   <div class="card shadow p-4" style="width: 350px">
     <h3 class="text-center mb-4">Connexion</h3>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form (submit)="onSubmit($event)">
       <div class="mb-3">
         <label for="email" class="form-label">Email :</label>
         <input
           type="email"
           class="form-control"
           placeholder="Votre email"
-          formControlName="email"
-          required
+          [field]="loginform.email"
         />
       </div>
 
@@ -19,18 +18,17 @@
         <input
           type="password"
           class="form-control"
-          formControlName="password"
+          [field]="loginform.password"
           placeholder="Votre mot de passe"
-          required
         />
       </div>
 
-      <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary w-100">
+      <button type="submit" [disabled]="loginform().invalid()" class="btn btn-primary w-100">
         Se connecter
       </button>
-      @if(errorMessage){
+      @if(errorMessage()){
       <div style="color: red; margin-top: 10px">
-        {{ errorMessage }}
+        {{ errorMessage() }}
       </div>
       }
     </form>
