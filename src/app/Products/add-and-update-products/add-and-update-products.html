@@ -1,1 +1,61 @@
-<p>add-and-update-products works!</p>
+<div class="container mt-4">
+  @if(messageSucess()){
+  <div class="alert alert-success" role="alert">
+    {{ messageSucess() }}
+  </div>
+  } @for (error of FormSaveProduit().errors() ; track error.kind) {
+  <div class="alert alert-danger" role="alert">
+    {{ error.message }}
+  </div>
+  }
+
+  <form (submit)="SaveProduct($event)">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" [field]="FormSaveProduit.name" />
+
+      @for (error of FormSaveProduit.name().errors() ; track error.kind) {
+      <div class="alert alert-danger" role="alert">
+        {{ error.message }}
+      </div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        [field]="FormSaveProduit.price"
+        placeholder="0"
+        step="0.01"
+      />
+
+      @for (error of FormSaveProduit.price().errors() ; track error.kind) {
+      <div class="alert alert-danger" role="alert">
+        {{ error.message }}
+      </div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="stock" class="form-label">Stock</label>
+      <input
+        type="number"
+        class="form-control"
+        id="stock"
+        [field]="FormSaveProduit.stock"
+        placeholder="0"
+      />
+
+      @for (error of FormSaveProduit.stock().errors() ; track error.kind) {
+      <div class="alert alert-danger" role="alert">
+        {{ error.message }}
+      </div>
+      }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+  </form>
+</div>

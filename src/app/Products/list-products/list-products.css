@@ -1,3 +1,17 @@
+.colorRow {
+  background-color: yellow;
+  padding: 10px;
+}
 .title {
   font-weight: bold;
+  color: red;
+}
+.row-even {
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+.row-odd {
+  background-color: #ffffff;
+  padding: 10px;
 }
