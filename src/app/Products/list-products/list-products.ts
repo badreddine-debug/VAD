@@ -27,4 +27,15 @@ export class ListProducts {
     console.log('fddsf');
     this.route.navigate(['/product/add']);
   }
+
+  deleteRow(id: number): void {
+    const confirmed = confirm('Voulez-vous vraiment supprimer cette ligne ?');
+
+    if (confirmed) {
+      // Appel à votre service de suppression
+      this.serviceProduct.DeleteProduct(id).subscribe(() => {
+        console.log('Ligne supprimée !');
+      });
+    }
+  }
 }

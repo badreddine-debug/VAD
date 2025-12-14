@@ -11,6 +11,7 @@ export class ProductService {
   private UrlListProduct = 'http://localhost:5000/api/Products/GetProducts';
   private UrlSearchProduct = 'http://localhost:5000/api/Products/SearchListProducts';
   private UrlSaveProduct = 'http://localhost:5000/api/Products/InsertProduct';
+  private UrlDeleteProduct = 'http://localhost:5000/api/Products/deleteProduct';
   private http = inject(HttpClient);
 
   getListProducts(): Observable<Products[]> {
@@ -32,5 +33,9 @@ export class ProductService {
     Produit.stock = SaveProduct.stock;
 
     return this.http.post<boolean>(this.UrlSaveProduct, Produit);
+  }
+
+  DeleteProduct(id: number): Observable<boolean> {
+    return this.http.get<boolean>(this.UrlDeleteProduct + '?id=' + id);
   }
 }

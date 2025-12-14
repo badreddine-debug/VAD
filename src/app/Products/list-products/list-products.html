@@ -17,7 +17,7 @@
     <div class="col">{{ product.price }}</div>
     <div class="col">{{ product.creationDate }}</div>
     <div class="col">
-      <a style="cursor: pointer">
+      <a style="cursor: pointer" (click)="deleteRow(product.id)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

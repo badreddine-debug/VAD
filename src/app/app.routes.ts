@@ -9,21 +9,34 @@ import { headerGuard } from './guards/header.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: Authentification, canActivate: [logoutGuard, headerGuard] },
-  { path: 'home', component: Home, canActivate: [authGuard, headerGuard] },
+  {
+    path: 'login',
+    canActivate: [logoutGuard, headerGuard],
+    loadComponent: () =>
+      import('./authentification/authentification').then((x) => x.Authentification),
+  },
+  {
+    path: 'home',
+    canActivate: [authGuard, headerGuard],
+    loadComponent: () => import('./home/home').then((x) => x.Home),
+  },
   {
     path: 'product',
     canActivate: [authGuard, headerGuard],
     children: [
       {
         path: 'list',
-        component: ListProducts, // child component
         canActivate: [authGuard, headerGuard],
+        loadComponent: () =>
+          import('./Products/list-products/list-products').then((x) => x.ListProducts),
       },
       {
         path: 'add',
-        component: AddAndUpdateProducts, // child component
         canActivate: [authGuard, headerGuard],
+        loadComponent: () =>
+          import('./Products/add-and-update-products/add-and-update-products').then(
+            (x) => x.AddAndUpdateProducts
+          ),
       },
     ],
   },
